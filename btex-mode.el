@@ -205,6 +205,7 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
 ;;; Btex render
 
 (require 'json)
+(require 'url)
 
 (defcustom btex-url "http://127.0.0.1"
   "Btex running url."
@@ -242,7 +243,7 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
 (defun btex-display-after-render (status)
   "Display btex content after render with STATUS."
   (let ((err (plist-get status :error)))
-    (if err (princ (format "Btex server error `%s'" (car (cdr err))))
+    (if err (princ (format "Btex server error `%S'" err))
       (let* ((content0 (buffer-substring-no-properties url-http-end-of-headers (point-max)))
              (content (json-read-from-string (decode-coding-string content0 'utf-8)))
              (output (cdr (assoc 'html content)))
