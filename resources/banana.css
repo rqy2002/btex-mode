@@ -1,0 +1,615 @@
+html {
+    margin: 0;
+    padding: 0 0 20px
+}
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans', Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', sans-serif;
+    background-color: #fff
+}
+
+a {
+    color: #1088c8
+}
+
+a:visited {
+    color: #1088c8
+}
+
+.b-page-body {
+    max-width: 1000px;
+    margin: 0 auto 0 auto;
+    padding: 0px 30px 30px 30px;
+    font-size: 18px;
+    font-family: PunctCJK, 'Noto Sans', Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', sans-serif;
+    letter-spacing: .015em
+}
+
+.b-page-body [lang]:not(:lang(zh)) {
+    font-family: 'Noto Sans', Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', sans-serif;
+    letter-spacing: normal
+}
+
+main {
+    line-height: 1.8
+}
+
+.tright {
+    float: right;
+    clear: both
+}
+
+.tleft {
+    float: right;
+    clear: both
+}
+
+.invisible {
+    display: none !important
+}
+
+.b-page-body a[href],
+.b-page-body btex-link {
+    color: #1088c8;
+    text-decoration: none
+}
+
+.b-page-body a[href]:hover,
+.b-page-body a[href]:focus {
+    color: #1088c8;
+    text-decoration: none;
+    outline: none
+}
+
+.b-page-body a[href].external {
+    color: #1088c8;
+}
+
+.b-page-body a[href]:visited,
+.b-page-body a[href].external:visited {
+    color: #1088c8;
+}
+
+.b-page-body a[href].external::after {
+    background-image: url('external-link.svg');
+    background-size: .75em;
+    width: .75em;
+    height: .75em;
+    margin-left: 4px;
+    display: inline-block;
+    content: '';
+    background-repeat: no-repeat
+}
+
+.b-page-body btex-link:hover,
+.b-page-body btex-link:focus,
+.b-page-body .btex-output a[href]:not(.image) {
+    line-height: 1.2;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    border-bottom-color: transparent
+}
+
+.b-page-body btex-link:hover,
+.b-page-body btex-link:focus,
+.b-page-body .btex-output a[href]:not(.image):hover,
+.b-page-body .btex-output a[href]:not(.image):focus {
+    border-bottom-color: #1088c850;
+}
+
+.b-page-body h2 {
+    border: 0;
+    padding: 10px 0;
+    margin: 1.2em 0 .5em 0;
+    font-size: 1.8em
+}
+
+.b-page-body h2 span.header-number {
+    margin-right: .75em;
+    font-weight: bold;
+    padding: 4px 6px;
+    border-bottom: 4px solid #ffd000;
+}
+
+.b-page-body h3:not(#p-cactions-label) {
+    font-size: 1.4em;
+    padding: 0;
+    margin-top: 1.2em;
+    margin-bottom: .6em;
+    font-weight: bold
+}
+
+.b-page-body h3:not(#p-cactions-label) span.header-number {
+    margin-right: 1em
+}
+
+.b-page-body h4 {
+    font-size: 1.2em;
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: .6em
+}
+
+.b-page-body h4 span.header-number {
+    margin-right: 1em
+}
+
+/* TODO Table of contents */
+.b-page-body .toc {
+    min-width: 10em;
+    border: 0;
+    padding: .7em 1.2em;
+    line-height: 1.6
+}
+
+.b-page-body .toc:not(.ready) {
+    display: none
+}
+
+.b-page-body .toc .toctitle {
+    text-align: justify;
+    font-size: 1.6em;
+    margin-bottom: .8em
+}
+
+.b-page-body .toc ul li.toclevel-2 {
+    padding-left: 1.5em
+}
+
+.b-page-body .toc ul li.toclevel-3 {
+    padding-left: 3em
+}
+
+.b-page-body h1,
+.b-page-body h2,
+.b-page-body h3:not(#p-cactions-label),
+.b-page-body h4 {
+    line-height: 1.4
+}
+
+.b-page-body code,
+.b-page-body pre {
+    font-family: sans-serif;
+    border: none;
+    background-color: #f4f6f8;
+    line-height: 1.4;
+    color: #666;
+    font-size: 90%
+}
+
+.b-page-body code {
+    margin: 0 3px;
+    white-space: pre-wrap
+}
+
+.b-page-body pre {
+    margin: 0;
+    padding: .5em 1em;
+    white-space: pre;
+    overflow-x: auto
+}
+
+.b-page-body .identifier {
+    font-family: 'Cascadia Code','Consolas','Microsoft YaHei UI','Microsoft YaHei','Noto Sans CJK SC','Source Han Sans CN',sans-serif;
+    font-size: 90%
+}
+
+.b-page-body .code-btex {
+    font-variant-ligatures: none
+}
+
+.b-page-body .code-btex .btex-function {
+    color: #f87000
+}
+
+.b-page-body .code-btex .btex-argument {
+    color: #30a0e0
+}
+
+.b-page-body .code-btex .btex-string {
+    color: #70a000
+}
+
+.b-page-body .code-btex .btex-comment {
+    color: #b0b0b0
+}
+
+.b-page-body img {
+    max-width: 100%;
+    height: auto
+}
+
+.b-page-body a.image {
+    display: inline-block;
+    max-width: 100%
+}
+
+.b-page-body table.list span.display-math {
+    display: grid;
+    grid-template-columns: max-content auto max-content
+}
+
+.b-page-body table.list span.display-math span.katex-display,
+.b-page-body table.list span.display-math svg {
+    grid-column: 2
+}
+
+.b-page-body table.list span.display-math span.equation-tag-left {
+    grid-column: 1
+}
+
+.b-page-body table.list span.display-math span.equation-tag-right {
+    grid-column: 3
+}
+
+.b-page-body span.display-math svg {
+    margin: 0 auto;
+    max-width: 100%
+}
+
+.b-page-body .warningbox {
+    margin: 0 0 16px 0;
+    border: 0;
+    padding: 1em
+}
+
+.b-page-body textarea#wpTextbox1:not(.b-unhide) {
+    opacity: 0
+}
+
+.b-page-body .btex-monaco-container {
+    height: 600px;
+    margin: 0 -30px
+}
+
+.b-page-body .error {
+    font-size: 100%
+}
+
+.b-page-body .mw-editTools,
+.b-page-body .templatesUsed,
+.b-page-body .hiddencats,
+.b-page-body .limitreport {
+    display: none
+}
+
+.b-page-body td.mw-enhanced-rc {
+    font-family: 'Cascadia Code','Consolas','Microsoft YaHei UI','Microsoft YaHei','Noto Sans CJK SC','Source Han Sans CN',sans-serif;
+}
+
+.katex {
+    font-size: 1.1em !important;
+    letter-spacing: normal
+}
+
+.katex .cjk_fallback:not(.sizing):not(.fontsize-ensurer) {
+    font-size: 90.91%
+}
+
+.b-page-body .katex {
+    font-family: KaTeX_Main, 'Noto Sans', Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', sans-serif
+}
+
+.b-page-body .katex .mathbb,
+.b-page-body .katex .textbb {
+    font-family: Lato_Bbb, KaTeX_AMS
+}
+
+.btex-output {
+    text-align: justify;
+    hyphens: auto
+}
+
+.btex-output p,
+.btex-output .p,
+.btex-output table.list {
+    margin: 0 0 1em 0
+}
+
+.btex-output .block,
+.btex-output tr.list-item,
+.btex-output h2,
+.btex-output h3,
+.btex-output h4 {
+    transition: outline-color 600ms ease;
+    outline-color: transparent;
+    outline-offset: 5px
+}
+
+.btex-output .block {
+    padding: .8em 1.2em;
+    margin: 0 0 1em 0;
+    background-color: #f4f6f8;
+    border-color: #c0c4c8;
+    border-left: 3px solid
+}
+
+.btex-output span.katex-display {
+    margin: 0
+}
+
+.btex-output span.display-math {
+    margin: 1em 0
+}
+
+.btex-output p:last-child,
+.btex-output .p:last-child,
+.btex-output table.list:last-child {
+    margin-bottom: 0
+}
+
+.btex-output div.floatright {
+    float: right;
+    margin: 0
+}
+
+.btex-output table.list.footnotes {
+    font-size: 75%
+}
+
+.btex-output p+table.list.list-no-sep-above {
+    margin-top: -1em
+}
+
+.btex-output table.list {
+    width: 100%;
+    border-collapse: collapse
+}
+
+.btex-output table.list tr.list-item:not(:last-child)>td {
+    padding-bottom: 1em
+}
+
+.btex-output table.list tr.list-item.list-item-no-sep>td {
+    padding-bottom: 0
+}
+
+.btex-output table.list td {
+    vertical-align: baseline
+}
+
+.btex-output table.list td.list-item-label {
+    width: 1.5em;
+    max-width: 16em;
+    overflow-x: clip;
+    white-space: nowrap;
+    text-align: right;
+    padding-right: 0.75em;
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.btex-output table.list.subpage-list tr.list-item:not(:last-child)>td {
+    padding-bottom: 0
+}
+
+.btex-output table.list.subpage-list td.list-item-label {
+    display: none
+}
+
+.btex-output table.list.subpage-list tr.list-item-indent-1>td:last-child {
+    padding-left: 1.5em
+}
+
+.btex-output table.list.subpage-list tr.list-item-indent-2>td:last-child {
+    padding-left: 3em
+}
+
+.btex-output table.list.subpage-list tr.list-item-indent-3>td:last-child {
+    padding-left: 4.5em
+}
+
+.btex-output .table-wrapper {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto
+}
+
+.btex-output span.display-math {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: stretch
+}
+
+.btex-output span.display-math.tikz-in-math {
+    align-items: center
+}
+
+.btex-output span.display-math span.katex-display {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden
+}
+
+.btex-output span.display-math span.equation-tag-left,
+.btex-output span.display-math span.equation-tag-right {
+    flex-shrink: 0;
+    flex-grow: 0
+}
+
+.btex-output span.undefined-reference {
+    font-weight: bold;
+    color: #ff3000
+}
+
+/* TODO theorem styles here */
+
+.btex-output .block.style-a {
+    background: #f4fcff;
+    border-color: #a0e0ff
+}
+
+.btex-output .block.style-a span.item-header {
+    color: #1088c8
+}
+
+.btex-output .block.style-a a span.item-header {
+    color: #1088c8
+}
+
+.btex-output .block.style-a a.new span.item-header {
+    color: #80b700
+}
+
+.btex-output .block.style-b {
+    background: #fffdf0;
+    border-color: #ffd880
+}
+
+.btex-output .block.style-b span.item-header {
+    color: #dc6700
+}
+
+.btex-output .block.style-b a span.item-header {
+    color: #1088c8
+}
+
+.btex-output .block.style-b a.new span.item-header {
+    color: #80b700
+}
+
+.btex-output .block.style-c {
+    background: #f2faf2;
+    border-color: #a0e0a0
+}
+
+.btex-output .block.style-c span.item-header {
+    color: #209020
+}
+
+.btex-output .block.style-c a span.item-header {
+    color: #1088c8
+}
+
+.btex-output .block.style-c a.new span.item-header {
+    color: #80b700
+}
+
+.btex-output .block.quotation {
+    background: #c0c4c8;
+    border-color: #606468;
+}
+
+.btex-output .proof,
+.btex-output .proof-collapsible {
+    margin: 0 0 1em 0;
+    overflow: hidden
+}
+
+.btex-output .proof-collapsible .proof-expander {
+    position: absolute;
+    cursor: pointer;
+    margin-left: -20px
+}
+
+.btex-output .proof-collapsible .proof-expander.proof-expander-ellipsis {
+    position: relative;
+    top: -.1em;
+    display: inline-flex;
+    overflow-y: hidden;
+    align-items: center;
+    margin: 0 .5em;
+    padding: 0 .6em;
+    background-color: #f0f2f6;
+    color: #a2a9b1;
+    border-radius: .6em;
+    height: 1em;
+    user-select: none;
+    -webkit-user-select: none
+}
+
+/* ! Note that collapsed/expanded is reversed temporarily */
+.btex-output .proof-collapsible.proof-collapsible-expanded>.proof-content,
+.btex-output .proof-collapsible.proof-collapsible-expanded>.proof-expander-collapsing {
+    display: none
+}
+
+.btex-output .proof-collapsible.proof-collapsible-collapsed>.proof-header,
+.btex-output .proof-collapsible.proof-collapsible-collapsed>.proof-expander-expanding {
+    display: none
+}
+
+span.btex-diagram {
+    display: inline-block
+}
+
+#render-content[invert-only] span.btex-diagram >svg.overlay,
+#render-content[invert-only] span.tikz-in-math >svg {
+    filter: invert(1);
+    mix-blend-mode: difference;
+}
+
+#render-content[invert-all] .katex {
+    color: #000;
+    filter: invert(1);
+    mix-blend-mode: difference
+}
+
+span.btex-diagram span.cell,
+span.btex-diagram span.label {
+    display: flex;
+    position: relative;
+    width: 0;
+    height: 0;
+    align-items: center;
+    justify-content: center
+}
+
+span.btex-diagram .katex {
+    font-size: 1em !important
+}
+
+span.btex-diagram .katex span.rlap {
+    user-select: none
+}
+
+.wikitable {
+    background-color: #f8f9fa;
+    color: #202122;
+    margin: 1em 0;
+    border: 1px solid #a2a9b1;
+    border-collapse: collapse
+}
+
+.wikitable > tr > th,.wikitable > tr > td,.wikitable > * > tr > th,.wikitable > * > tr > td {
+    border: 1px solid #a2a9b1;
+    padding: 0.2em 0.4em
+}
+
+.wikitable > tr > th,.wikitable > * > tr > th {
+    background-color: #eaecf0;
+    text-align: center
+}
+
+.wikitable > caption {
+    font-weight: bold
+}
+
+/* Update when https://github.com/banana-space/banana-space/issues/7 is resolved */
+@media print {
+    .b-nav-wrapper,#siteNotice,.content__before-header,.content__namespaces-actions,footer {
+        display: none
+    }
+
+    .b-page-body {
+        box-shadow: none;
+        padding: 0;
+        font-size: 12px;
+        width: calc(100% - 120px);
+        padding: 100px 60px 60px 60px;
+    }
+
+    h1,h2,h3,h4 {
+        font-weight: normal
+    }
+
+    .nomobile {
+        display: none
+    }
+
+    /* .btex-output span.display-math span.katex-display {
+        overflow-x: visible;
+    } */
+}
