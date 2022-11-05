@@ -48,13 +48,13 @@
 (defconst btex-header3 "^====\\s-+\\(?1:.*\\)\\s-+====\\s-*$" "Btex header 3.")
 (defconst btex-escape  "\\\\@*[a-zA-Z]+\\|\\\\[^@a-zA-Z]" "Btex escape sequence.")
 (defconst btex-inline-math
-  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\$[^$]\\(?1:.*?\\)[^\\\\]\\(?:\\\\\\\\\\)*\\$"
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\$\\(?1:[^$\\\\]\\|[^$].*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\$"
   "Btex inline math.")
 (defconst btex-display-math
-  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\\\[\\(?1:\\(?:.\\|\n\\)*?\\)[^\\\\]\\(?:\\\\\\\\\\)*\\\\\\]"
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\\\[\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\\\]"
   "Btex display math.")
 (defconst btex-display-math2
-  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\$\\$\\(?1:\\(?:.\\|\n\\)*?\\)[^\\\\]\\(?:\\\\\\\\\\)*\\$\\$"
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\$\\$\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\|\\)\\$\\$"
   "Btex display math, another version.")
 
 (defun btex-search-in-command (command &optional limit argnum)
@@ -228,17 +228,19 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
 (defun btex-html (output warnings errors)
   "Btex html from OUTPUT, WARNINGS and ERRORS."
   (let ((output output))
-  (concat
-   "<!DOCTYPE html>\n"
-   "<head>\n"
-   "<link rel='stylesheet' href='file://" btex-banana-css-path "' />\n"
-   "<link rel='stylesheet' href='file://" btex-katex-css-path "' />\n"
-   "</head>\n"
-   "<body>\n"
-   "<div class='b-page-body'>\n"
-   output
-   "</div>\n"
-   "</body>\n")))
+    ;; (print warnings)
+    ;; (print errors)
+    (concat
+     "<!DOCTYPE html>\n"
+     "<head>\n"
+     "<link rel='stylesheet' href='file://" btex-banana-css-path "' />\n"
+     "<link rel='stylesheet' href='file://" btex-katex-css-path "' />\n"
+     "</head>\n"
+     "<body>\n"
+     "<div class='b-page-body'>\n"
+     output
+     "</div>\n"
+     "</body>\n")))
 
 (defun btex-display-after-render (status)
   "Display btex content after render with STATUS."
