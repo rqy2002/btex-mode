@@ -56,6 +56,24 @@
 (defconst btex-display-math2
   "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\$\\$\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\|\\)\\$\\$"
   "Btex display math, another version.")
+(defconst btex-align-env
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\begin[ \t]*{align}\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\end[ \t]*{align}"
+  "Btex align enviorment.")
+(defconst btex-align-star-env
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\begin[ \t]*{align\\*}\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\end[ \t]*{align\\*}"
+  "Btex align* enviorment.")
+(defconst btex-alignat-env
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\begin[ \t]*{alignat}\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\end[ \t]*{alignat}"
+  "Btex alignat enviorment.")
+(defconst btex-alignat-star-env
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\begin[ \t]*{alignat\\*}\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\end[ \t]*{alignat\\*}"
+  "Btex alignat* enviorment.")
+(defconst btex-gather-env
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\begin[ \t]*{gather}\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\end[ \t]*{gather}"
+  "Btex gather enviorment.")
+(defconst btex-gather-star-env
+  "\\(?:^\\|[^\\\\]\\)\\(?:\\\\\\\\\\)*\\\\begin[ \t]*{gather\\*}\\(?1:\\(?:.\\|\n\\)*?[^\\\\]\\(?:\\\\\\\\\\)*\\)\\\\end[ \t]*{gather\\*}"
+  "Btex gather* enviorment.")
 
 (defun btex-search-in-command (command &optional limit argnum)
   "Search forward the COMMAND, set point to the end, and return point.
@@ -111,7 +129,7 @@ For more information, see `btex-search-in-command'"
 (fset 'btex-codeblock (btex-command-matcher "codeblock"))
 (fset 'btex-textcolor (btex-command-matcher "textcolor" 2))
 
-;;; font-lock
+;; font-lock
 
 (require 'font-lock)
 
@@ -199,20 +217,26 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
     (,btex-inline-math 1 'btex-math-face append)
     (,btex-display-math 1 'btex-math-face append)
     (,btex-display-math2 1 'btex-math-face append)
+    (,btex-align-env 1 'btex-math-face append)
+    (,btex-align-star-env 1 'btex-math-face append)
+    (,btex-alignat-env 1 'btex-math-face append)
+    (,btex-alignat-star-env 1 'btex-math-face append)
+    (,btex-gather-env 1 'btex-math-face append)
+    (,btex-gather-star-env 1 'btex-math-face append)
     (btex-code 2 'btex-code-face t)
     (btex-codeblock 2 'btex-code-face t)))
 
-;;; Btex render
+;; Btex render
 
 (require 'json)
 (require 'url)
 
-(defcustom btex-url "http://127.0.0.1"
+(defcustom btex-preview-url "http://127.0.0.1"
   "Btex running url."
   :type 'string
   :group 'btex)
 
-(defcustom btex-port 7200
+(defcustom btex-preview-port 7200
   "Btex running port."
   :type 'number
   :group 'btex)
@@ -222,7 +246,11 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
   :type 'string
   :group 'btex)
 
-(defconst btex-banana-css-path (expand-file-name "banana.css" btex-resources-directory))
+(defcustom btex-banana-css-path (expand-file-name "banana.css" btex-resources-directory)
+  "Btex css path. Will be used in render."
+  :type 'string
+  :group 'btex)
+
 (defconst btex-katex-css-path (expand-file-name "katex/katex.min.css" btex-resources-directory))
 
 (defun btex-html (output warnings errors)
@@ -262,7 +290,7 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
 (defun btex-render ()
   "Render btex."
   (interactive)
-  (let ((url (concat btex-url ":" (number-to-string btex-port)))
+  (let ((url (concat btex-preview-url ":" (number-to-string btex-preview-port)))
         (url-request-method "POST")
         (url-request-extra-headers
          '(("Content-Type" . "application/json")))
@@ -271,6 +299,8 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
           (json-encode `((code . ,(buffer-substring-no-properties (point-min) (point-max)))))
           'utf-8)))
     (url-retrieve url 'btex-display-after-render)))
+
+(require 'latex "latex.elc" t)
 
 ;;;###autoload
 (define-derived-mode btex-mode text-mode "Btex"
@@ -282,6 +312,9 @@ If MATCH is non-nil, colorize the corresponding subexp instead."
           (font-lock-multiline . t)
           (font-lock-extra-managed-props
            . (composition display invisible rear-nonsticky keymap help-echo mouse-face))))
+  ;; Don't reinvent the wheel!
+  (if (featurep 'latex)
+      (setq-local indent-line-function #'LaTeX-indent-line))
   (setq-local comment-start "%")
   (setq-local comment-start-skip "%[ \t]+"))
 
