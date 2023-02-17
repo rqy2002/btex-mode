@@ -149,7 +149,7 @@ For more information, see `btex-search-in-command'"
   :group 'btex-faces)
 
 (defface btex-escape-face
-  '((t (:foreground "#f87000")))
+  '((t (:foreground "#f87000" :weight semi-bold)))
   "Face for esacpe sequences."
   :group 'btex-faces)
 
@@ -169,7 +169,7 @@ For more information, see `btex-search-in-command'"
   :group 'btex-faces)
 
 (defface btex-env-name-face
-  '((t (:foreground "#70a000")))
+  '((t (:foreground "#70a000" :inherit italic)))
   "Face for enviorment names."
   :group 'btex-faces)
 
